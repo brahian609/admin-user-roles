@@ -1,7 +1,7 @@
-//import contacts from './contacts/contacts.js';
+import roles from './roles/roles';
 
 let componentsModule = angular.module('app.components', [
-    //contacts.name
+    roles.name
 ]);
 
 export default componentsModule;
