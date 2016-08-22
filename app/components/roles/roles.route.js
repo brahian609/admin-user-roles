@@ -10,6 +10,12 @@ function rolesRoutes($stateProvider, $urlRouterProvider) {
             controller: 'RolesController',
             controllerAs: 'ctrl',
             templateUrl: 'components/roles/roles.html'
+        })
+        .state('roles.form', {
+            url: '/create',
+            controller: 'RolesFormController',
+            controllerAs: 'ctrlForm',
+            templateUrl: 'components/roles/roles-form/roles-form.html'
         });
 }
 
