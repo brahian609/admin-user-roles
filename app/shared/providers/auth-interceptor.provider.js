@@ -1,8 +1,8 @@
-class AuthInterceptorServiceProvider {
+class AuthInterceptorProvider {
     constructor() {}
 }
 
-AuthInterceptorServiceProvider.prototype.$get = ['AuthTokenService', function (AuthTokenService) {
+AuthInterceptorProvider.prototype.$get = ['AuthTokenProvider', function (AuthTokenProvider) {
     return {
         //so we'll have 'request' and it will be 'addToken'.
         request: addToken
@@ -10,7 +10,7 @@ AuthInterceptorServiceProvider.prototype.$get = ['AuthTokenService', function (A
 
     function addToken(config) {
 
-        let token = AuthTokenService.getToken();
+        let token = AuthTokenProvider.getToken();
         //  Now if there is a token, so if the user is authenticated.
         if (token) {
             // then we're going to add this to a header on this config object,
@@ -24,4 +24,4 @@ AuthInterceptorServiceProvider.prototype.$get = ['AuthTokenService', function (A
 
 }];
 
-export default AuthInterceptorServiceProvider;
+export default AuthInterceptorProvider;
