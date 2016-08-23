@@ -8,8 +8,6 @@ class LoginController {
 
     login() {
         this.LoginService.login(this.user).then((response) => {
-            console.log('response');
-            console.log(response);
             this.$state.go('app.roles');
         }, this.errorHandler);
     }

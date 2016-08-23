@@ -12,14 +12,14 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper) {
         if (toState.data && toState.data.requiresLogin) {
             let token = AuthTokenProvider.getToken();
 
-            var tokenPayLoad = jwtHelper.decodeToken(token);
+            /*var tokenPayLoad = jwtHelper.decodeToken(token);
             var date = jwtHelper.getTokenExpirationDate(token);
             var exp = jwtHelper.isTokenExpired(token);
 
             console.log('tokenPayLoad');
-             console.log(tokenPayLoad, date, exp);
+            console.log(tokenPayLoad, date, exp);
 
-            $rootScope.crm_modules = tokenPayLoad.crm_modules;
+            $rootScope.crm_modules = tokenPayLoad.crm_modules;*/
 
             if (!token) {
                 event.preventDefault();
