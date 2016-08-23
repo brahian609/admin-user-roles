@@ -1,10 +1,10 @@
 class LoginService {
 
-    constructor($http, API_URL, $q, AuthTokenService){
+    constructor($http, API_URL, $q, AuthTokenProvider){
         this.$http = $http;
         this.API_URL = API_URL;
         this.$q = $q;
-        this.AuthTokenService = AuthTokenService;
+        this.AuthTokenProvider = AuthTokenProvider;
     }
 
     login(user) {
@@ -20,7 +20,7 @@ class LoginService {
                     'Content-Type': 'application/json'
                 }
             }).then(({data}) => {
-                this.AuthTokenService.setToken(data.request_token).then(response => {
+                this.AuthTokenProvider.setToken(data.request_token).then(response => {
                     resolve(data);
                 });
             }, (error) => {
@@ -34,6 +34,6 @@ class LoginService {
 
 }
 
-LoginService.$inject = ['$http', 'API_URL', '$q', 'AuthTokenService'];
+LoginService.$inject = ['$http', 'API_URL', '$q', 'AuthTokenProvider'];
 
 export default LoginService;
