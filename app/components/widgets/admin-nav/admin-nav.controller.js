@@ -3,9 +3,9 @@ class AdminNavController {
     constructor($state){
 
         this.links = [
-            {name: 'Usuarios', route: 'users'},
-            {name: 'Roles', route: 'roles'},
-            {name: 'Perfiles', route: 'profiles'}
+            {name: 'Usuarios', route: 'app.users'},
+            {name: 'Roles', route: 'app.roles'},
+            {name: 'Perfiles', route: 'app.profiles'}
         ];
 
     }

@@ -5,13 +5,13 @@ function profilesRoutes($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('profiles', {
+        .state('app.profiles', {
             url: '/profiles',
             controller: 'ProfilesController',
             controllerAs: 'ctrl',
             templateUrl: 'components/profiles/profiles.html'
         })
-        .state('profiles.form', {
+        .state('app.profiles.form', {
             url: '/create',
             controller: 'ProfilesFormController',
             controllerAs: 'ctrlForm',
