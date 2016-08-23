@@ -9,7 +9,10 @@ function profilesRoutes($stateProvider, $urlRouterProvider) {
             url: '/profiles',
             controller: 'ProfilesController',
             controllerAs: 'ctrl',
-            templateUrl: 'components/profiles/profiles.html'
+            templateUrl: 'components/profiles/profiles.html',
+            data: {
+                requiresLogin: true
+            }
         })
         .state('app.profiles.form', {
             url: '/create',

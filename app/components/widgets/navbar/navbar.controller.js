@@ -1,18 +1,18 @@
 class navbarController {
 
-    constructor($state, AuthTokenService){
+    constructor($state, AuthTokenProvider){
         this.$state = $state;
-        this.AuthTokenService = AuthTokenService;
+        this.AuthTokenProvider = AuthTokenProvider;
     }
 
     logout() {
-        this.AuthTokenService.setToken().then(response => {
+        this.AuthTokenProvider.setToken().then(response => {
             this.$state.go('login');
         });
     }
 
 }
 
-navbarController.$inject = ['$state', 'AuthTokenService'];
+navbarController.$inject = ['$state', 'AuthTokenProvider'];
 
 export default navbarController;
