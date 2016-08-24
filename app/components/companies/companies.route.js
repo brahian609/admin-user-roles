@@ -7,8 +7,8 @@ function companiesRoutes($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('app.companies', {
             url: '/companies',
-            controller: 'ProfilesController',
-            controllerAs: 'ctrl',
+            controller: 'CompaniesController',
+            controllerAs: '$ctrl',
             templateUrl: 'components/companies/companies.html',
             data: {
                 requiresLogin: true
@@ -16,8 +16,8 @@ function companiesRoutes($stateProvider, $urlRouterProvider) {
         })
         .state('app.companies.form', {
             url: '/create',
-            controller: 'ProfilesFormController',
-            controllerAs: 'ctrlForm',
+            controller: 'CompaniesFormController',
+            controllerAs: '$ctrl',
             templateUrl: 'components/companies/companies-form/companies-form.html'
         });
 }

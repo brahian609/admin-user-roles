@@ -8,7 +8,7 @@ class LoginController {
 
     login() {
         this.LoginService.login(this.user).then((response) => {
-            this.$state.go('app.roles');
+            this.$state.go('app.home');
         }, this.errorHandler);
     }
 
