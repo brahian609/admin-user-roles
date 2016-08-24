@@ -19,67 +19,18 @@
                             <label for="name">Nombre</label>
                             <input type="text" id="name"
                                    class="form-control"
-                                   ng-model="ctrlForm.name">
+                                   ng-model="$ctrl.company.name">
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <input type="text" id="description"
+                            <label for="nit">Nit</label>
+                            <input type="number" id="nit"
                                    class="form-control"
-                                   ng-model="ctrlForm.description">
+                                   ng-model="$ctrl.company.nit">
                         </div>
 
-                        <h4>Seleccionar los privilegios para este perfil</h4>
-
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th>
-                                    <input type="checkbox">
-                                    Módulo
-                                </th>
-                                <th class="text-center">
-                                    <input type="checkbox">
-                                    Ver
-                                </th>
-                                <th class="text-center">
-                                    <input type="checkbox">
-                                    Crear
-                                </th>
-                                <th class="text-center">
-                                    <input type="checkbox">
-                                    Editar
-                                </th>
-                                <th class="text-center">
-                                    <input type="checkbox">
-                                    Borrar
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                    Prospetos
-                                </td>
-                                <td class="text-center">
-                                    <input type="checkbox">
-                                </td>
-                                <td class="text-center">
-                                    <input type="checkbox">
-                                </td>
-                                <td class="text-center">
-                                    <input type="checkbox">
-                                </td>
-                                <td class="text-center">
-                                    <input type="checkbox">
-                                </td>
-
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <button ng-click="(ctrlForm.createForm == true) ? ctrlForm.create() : ctrlForm.update()" class="btn btn-primary">
+                        <button ng-click="$ctrl.create()"
+                                class="btn btn-primary">
                             <i class="glyphicon glyphicon-floppy-disk"></i>
                             Guardar
                         </button>

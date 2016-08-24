@@ -1,11 +1,26 @@
 class CompaniesFormController {
 
-    constructor($state){
-
+    constructor($state, BaseService){
+        this.$state = $state;
+        this.BaseService = BaseService;
+        this.company = {};
     }
 
     create(){
-        console.log("create");
+
+        this.BaseService.request(
+            {
+                endpoint: `companies`,
+                method: 'POST',
+                dataName: 'company',
+                dataObj: this.company
+            }
+        ).then(({data}) => {
+            console.log('data');
+            console.log(data);
+            this.$state.go('app.companies');
+        });
+
     }
 
     update(){
@@ -14,6 +29,6 @@ class CompaniesFormController {
 
 }
 
-CompaniesFormController.$inject = ['$state'];
+CompaniesFormController.$inject = ['$state', 'BaseService'];
 
 export default CompaniesFormController;
