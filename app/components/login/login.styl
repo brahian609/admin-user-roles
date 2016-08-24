@@ -1,0 +1,119 @@
+/*--- login ---*/
+
+.Login
+  min-height: 100vh
+  min-width: 100vw
+
+.Login-wrapper
+  min-height: calc(100vh - 0em)
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  font-family: $open-sans-condensed !important
+  radial-gradient($background-dark-from, $background-dark-to, 'pin-softpymes-full.png')
+
+  .Login-wrapper-inner
+    width: 30vw
+    margin: 0 auto
+
+.Login-logo
+  position: relative
+  img
+    height: auto
+    width: 100%
+
+.Login-form
+  margin: 0 auto
+  width: 55%
+
+  .Login-inputContainer
+    position: relative
+
+  .Login-inputFields
+    background: $loginFields
+    border: 1px solid #bcbcbc
+    color: #ffffff
+    padding: 0.1em 0.6em
+    margin: 0 0 7px 0
+    border-radius: 0 !important
+    height: 28px !important
+    &::-webkit-input-placeholder
+      color: #ddd
+    &::-moz-placeholder
+      color: #ddd
+
+  .Login-bottomSpacer
+    margin: 0 0 10px 0
+
+.Login-title
+  color: #fff
+  font-size: 30px
+  text-align: center
+  margin: 0 auto
+  p
+    margin: 10px
+
+.Login-copyright
+  color: #fff
+  text-align: center
+  width: 390px
+  margin: 0 auto
+  position: fixed
+  bottom: 1.5%
+  left: 0
+  right: 0
+  p
+    margin: 0
+
+.loginFields.ng-invalid
+  border: 1px solid $ng-invalid
+
+.loginLabels
+  color: $loginLabels
+  font-size: 1.2em
+  text-decoration: none
+  text-transform: capitalize
+
+.Login-error
+  background: $input-error
+  border-radius: $borderRadius
+  padding: 0.1em 0.5em
+  position: absolute
+  right: -10em
+  top: 0
+  span
+    color: $accent
+
+.Login-errorHandler
+  padding: 6px
+  text-align: center
+  background: transparent
+  margin-top: 0.5em
+  color: rgba(255,0,0,0.69)
+  font-weight: bold
+
+
+.Login-successHandler
+  @extend .Login-errorHandler
+
+
+.Login-recovery
+  background: none
+  color: #ddd
+  border: none
+  font-size: 12px
+
+.Login-button
+  padding: 0.3em 0.3em
+  background: $primary
+  border-radius: 0
+  border: none
+  height: inherit
+  cursor: pointer
+  color: #fff !important
+  font-size: 1.2em
+  &:hover
+    background: $primary-with-alpha
+    border-color: rgba(0,0,0,0.9)
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.6)

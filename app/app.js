@@ -7,6 +7,8 @@ import appRoutes from './app.routes';
 import appRun from './app.run';
 import shared from './shared/shared';
 
+import './assets/stylus/styles.styl';
+
 angular.module('app', [
         libraries.name,
         constants.name,

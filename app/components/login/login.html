@@ -1,40 +1,72 @@
 <ui-view>
 
-    <div style="margin-top: 10%" class="col-lg-4 col-lg-offset-4">
+    <div class="Login-wrapper">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h4 class="text-center">Inicio de Sesión</h4>
+        <div class="Login-wrapper-inner">
+
+            <div class="Login-title">
+                <p>
+                    ADMINISTRADOR TENANT
+                </p>
             </div>
-            <div class="panel-body text-center">
 
-                <form ng-submit="$ctrl.login()" class="col-lg-offset-2">
+            <!--<figure class="Login-logo">
+                <img src="../../assets/img/logo-crm-plus.png" style=" margin: 0 auto; display: block;"/>
+            </figure>-->
 
-                    <div class="row col-md-10">
-                        <div class="form-group">
-                            <label for="username">Usuario</label>
-                            <input type="text" id="username"
-                                   style="text-align: center"
-                                   class="form-control"
-                                   ng-model="$ctrl.user.username">
-                        </div>
+            <ui-view>
 
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" id="password"
-                                   style="text-align: center"
-                                   class="form-control"
-                                   ng-model="$ctrl.user.password">
-                        </div>
+                <form class="Login-form"
+                      ng-submit="$ctrl.login()"
+                      name="loginForm">
 
-                        <button type="submit" class="btn btn-primary">
-                            Ingresar
-                        </button>
-                    </div>
+                    <input id="email"
+                           type="text"
+                           name="loginEmail"
+                           ng-model="$ctrl.user.username"
+                           class="Login-inputFields form-control"
+                           placeholder="Usuario"
+                           required>
+
+                    <div class="clearfix"></div>
+
+                    <input id="password"
+                           type="password"
+                           name="pwd"
+                           ng-model="$ctrl.user.password"
+                           class="Login-inputFields form-control"
+                           ng-minlength="8"
+                           placeholder="Contraseña"
+                           ng-required=""/>
+
+                    <div class="clearfix"></div>
+
+                    <input class="form-control Login-button" type="submit" value="Ingresar">
+
+                    <div class="clearfix"></div>
+
+                    <!--<p class="Login-errorHandler animated fadeInDown" ng-if="$ctrl.errorHandler">
+                        <span ng-bind="$ctrl.errorHandler"></span>
+                    </p>-->
 
                 </form>
 
+            </ui-view>
+
+            <div class="Login-copyright">
+                <p>Licenciado a: Softpymes</p>
+
+                <p>Serial N°: XXXX-ASDF-FDSA-QWER-ZXCV</p>
+
+                <p>Numero de Usuarios: 12</p>
+
+                <p>Convenio de soporte vigente hasta: 19/08/2015</p>
+
+                <p>Fecha de Versión: 19/08/2015</p>
+
+                <p>Versión: 2.0.0.1</p>
             </div>
+
         </div>
 
     </div>
