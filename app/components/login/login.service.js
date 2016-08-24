@@ -24,8 +24,6 @@ class LoginService {
                     resolve(data);
                 });
             }, (error) => {
-                console.log('--- error ---');
-                console.log(error);
                 reject(error);
             });
         });

@@ -4,17 +4,15 @@ class LoginController {
         this.LoginService = LoginService;
         this.$state = $state;
         this.user = {};
+        this.errorText = '';
     }
 
     login() {
         this.LoginService.login(this.user).then((response) => {
             this.$state.go('app.home');
-        }, this.errorHandler);
-    }
-
-    errorHandler(error) {
-        console.log('--- login error ---');
-        console.log(error.data);
+        }).catch(error => {
+            this.errorText = error.data.error;
+        });
     }
 
 }
