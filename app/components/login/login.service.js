@@ -7,11 +7,11 @@ class LoginService {
         this.AuthTokenProvider = AuthTokenProvider;
     }
 
-    login(user) {
+    login(user, url) {
 
         return this.$q((resolve, reject) => {
             this.$http({
-                url: `${this.API_URL}/authenticate/create`,
+                url: `${url}/authenticate/create`,
                 method: 'POST',
                 data: {
                     user

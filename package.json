@@ -1,7 +1,7 @@
 {
-  "name": "admin-users",
+  "name": "Tenant",
   "version": "1.0.0",
-  "description": "Gestionar roles y permisos de usuario",
+  "description": "Multitenencia de Compañias",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brahian609/admin-user-roles.git"
+    "url": "git+https://github.com/brahian609/tenant-company.git"
   },
   "keywords": [
     "administrator-users",
@@ -19,9 +19,9 @@
   "author": "brian giraldo <brahian609@hotmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brahian609/admin-user-roles/issues"
+    "url": "https://github.com/brahian609/tenant-company/issues"
   },
-  "homepage": "https://github.com/brahian609/admin-user-roles#readme",
+  "homepage": "https://github.com/brahian609/tenant-company#readme",
   "dependencies": {
     "angular": "1.5.8",
     "angular-jwt": "0.1.3",

@@ -8,7 +8,7 @@ function loginRoutes($stateProvider, $urlRouterProvider) {
 
     $stateProvider
         .state('login', {
-            url: '/login',
+            url: '/login/:nit',
             template: `<login class="Login"></login>`
         });
 

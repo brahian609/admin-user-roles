@@ -1,14 +1,19 @@
 class BaseService {
 
-    constructor(API_URL, $http, $q){
+    constructor(API_URL, $http, $q, $window){
         this.API_URL = API_URL;
         this.$http = $http;
         this.$q = $q;
+        this.$window = $window;
     }
 
     request(req) {
 
-        let url = this.API_URL;
+        let store = this.$window.localStorage;
+
+        let url = store.getItem('url');
+
+        //let url = this.API_URL;
 
         let config = {
             url: `${url}/${req.endpoint}`,
@@ -32,6 +37,6 @@ class BaseService {
 
 }
 
-BaseService.$inject = ['API_URL', '$http', '$q'];
+BaseService.$inject = ['API_URL', '$http', '$q', '$window'];
 
 export default BaseService;
