@@ -11,7 +11,7 @@ class BaseService {
 
         let store = this.$window.localStorage;
 
-        let url = store.getItem('url');
+        let url = store.getItem('tenant-url');
 
         //let url = this.API_URL;
 

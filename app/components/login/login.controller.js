@@ -18,7 +18,7 @@ class LoginController {
     login() {
         this.LoginService.login(this.user, this.url).then((response) => {
             let store = this.$window.localStorage,
-                key = 'url';
+                key = 'tenant-url';
             store.setItem(key, this.url);
             this.$state.go('app.home');
         }).catch(error => {

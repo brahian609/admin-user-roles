@@ -2,7 +2,6 @@ import navbar from './widgets/navbar/navbar';
 import login from './login/login';
 import home from './home/home';
 import leads from './leads/leads';
-import companies from './companies/companies';
 import roles from './roles/roles';
 import profiles from './profiles/profiles';
 import adminNav from './widgets/admin-nav/admin-nav';
@@ -13,7 +12,6 @@ let componentsModule = angular.module('app.components', [
     login.name,
     home.name,
     leads.name,
-    companies.name,
     roles.name,
     profiles.name,
     adminNav.name,

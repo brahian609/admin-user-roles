@@ -9,14 +9,14 @@ class navbarController {
     logout() {
 
         let store = this.$window.localStorage;
+        let url = store.getItem('tenant-url');
 
-        let url = store.getItem('url');
+        var nit = url.split('http://')[1].split('.')[0];
 
-        console.log('url');
-        console.log(url);
 
         this.AuthTokenProvider.setToken().then(response => {
-            this.$state.go('login');
+            store.removeItem('tenant-url');
+            this.$state.go('login', {nit: nit});
         });
     }
 

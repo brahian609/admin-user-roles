@@ -12,18 +12,18 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper) {
         if (toState.data && toState.data.requiresLogin) {
             let token = AuthTokenProvider.getToken();
 
-            /*var tokenPayLoad = jwtHelper.decodeToken(token);
-            var date = jwtHelper.getTokenExpirationDate(token);
-            var exp = jwtHelper.isTokenExpired(token);
-
-            console.log('tokenPayLoad');
-            console.log(tokenPayLoad, date, exp);
-
-            $rootScope.crm_modules = tokenPayLoad.crm_modules;*/
-
             if (!token) {
                 event.preventDefault();
                 $state.go('login');
+            }else{
+                var tokenPayLoad = jwtHelper.decodeToken(token);
+                var date = jwtHelper.getTokenExpirationDate(token);
+                var exp = jwtHelper.isTokenExpired(token);
+
+                console.log('tokenPayLoad');
+                console.log(tokenPayLoad, date, exp);
+
+                $rootScope.crm_modules = tokenPayLoad.crm_modules;
             }
 
             /*if(BaseService.check_navigation(module, tokenPayLoad.crm_modules) === false && module !== 'home'){
