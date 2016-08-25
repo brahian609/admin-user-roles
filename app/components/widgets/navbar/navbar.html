@@ -15,7 +15,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a ui-sref="app.leads">Prospectos</a>
+                    <a ui-sref="app.leads" ng-if="$ctrl.checkNav({module: 'lead'})">Prospectos</a>
+                </li>
+                <li>
+                    <a ui-sref="app.contacts" ng-if="$ctrl.checkNav({module: 'contacts'})">Contactos</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

@@ -1,6 +1,6 @@
-appRun.$inject = ['$state', '$rootScope', 'AuthTokenProvider', 'jwtHelper'];
+appRun.$inject = ['$state', '$rootScope', 'AuthTokenProvider', 'jwtHelper', 'BaseService'];
 
-function appRun($state, $rootScope, AuthTokenProvider, jwtHelper) {
+function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
     'use strict';
 
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
@@ -26,10 +26,10 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper) {
                 $rootScope.crm_modules = tokenPayLoad.crm_modules;
             }
 
-            /*if(BaseService.check_navigation(module, tokenPayLoad.crm_modules) === false && module !== 'home'){
+            if(BaseService.check_navigation(module, tokenPayLoad.crm_modules) === false && module !== 'home'){
                 event.preventDefault();
                 $state.go('app.home');
-            }*/
+            }
 
         }
 

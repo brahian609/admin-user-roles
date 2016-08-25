@@ -35,6 +35,21 @@ class BaseService {
 
     }
 
+    /*validar si el usuario tiene acceso al modulo*/
+    check_navigation(module, modules) {
+
+        var validNav = modules.filter((element) => {
+            return element == module;
+        });
+
+        if(validNav.length === 0){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
 }
 
 BaseService.$inject = ['API_URL', '$http', '$q', '$window'];

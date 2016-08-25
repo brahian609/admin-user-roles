@@ -1,0 +1,56 @@
+<ui-view>
+
+    <div class="col-lg-2">
+        <admin-nav></admin-nav>
+    </div>
+
+    <div class="col-lg-10">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Contactos</h4>
+            </div>
+            <div class="panel-body">
+
+                <a class="btn btn-default" ui-sref="app.contacts.form">
+                    <i class="glyphicon glyphicon-plus"></i> Crear Contacto
+                </a>
+
+                <div class="clear">&nbsp;</div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Identificación</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="lead in $ctrl.leads track by $index ">
+                        <td ng-bind="lead.id"></td>
+                        <td ng-bind="lead.name"></td>
+                        <td ng-bind="lead.last_name"></td>
+                        <td ng-bind="lead.identification"></td>
+                        <td ng-bind="lead.primary_email"></td>
+                        <td>
+                            <button uib-tooltip="Ver Detalles"
+                                    ng-click="$ctrl.getCompany(lead.id)"
+                                    class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</ui-view>
