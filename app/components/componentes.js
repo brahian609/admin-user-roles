@@ -1,5 +1,6 @@
 import navbar from './widgets/navbar/navbar';
 import login from './login/login';
+import errors from './errors/errors';
 import home from './home/home';
 import leads from './leads/leads';
 import contacts from './contacts/contacts';
@@ -11,6 +12,7 @@ import loginRoutes from './login/login.routes';
 let componentsModule = angular.module('app.components', [
     navbar.name,
     login.name,
+    errors.name,
     home.name,
     leads.name,
     contacts.name,

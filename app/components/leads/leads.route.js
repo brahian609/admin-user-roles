@@ -5,7 +5,7 @@ function leadsRoutes($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('app.leads', {
+        .state('app.lead', {
             url: '/prospectos',
             controller: 'LeadsController',
             controllerAs: '$ctrl',
@@ -14,7 +14,7 @@ function leadsRoutes($stateProvider, $urlRouterProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.leads.form', {
+        .state('app.lead.form', {
             url: '/create',
             controller: 'LeadsFormController',
             controllerAs: '$ctrl',
