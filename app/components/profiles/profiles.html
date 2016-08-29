@@ -27,13 +27,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Prueba</td>
+                    <tr ng-repeat="profile in $ctrl.profiles track by $index">
+                        <td ng-bind="profile.name"></td>
+                        <td ng-bind="profile.description"></td>
                         <td>
-                            Descripción
-                        </td>
-                        <td>
-                            <button class="btn btn-default btn-xs">
+                            <button uib-tooltip="Ver Detalles"
+                                    ng-click="$ctrl.getProfile(profile.id)"
+                                    class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
                             </button>
                         </td>

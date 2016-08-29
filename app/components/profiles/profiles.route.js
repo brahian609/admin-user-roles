@@ -7,7 +7,7 @@ function profilesRoutes($stateProvider) {
         .state('app.profile', {
             url: '/profiles',
             controller: 'ProfilesController',
-            controllerAs: 'ctrl',
+            controllerAs: '$ctrl',
             templateUrl: 'components/profiles/profiles.html',
             data: {
                 requiresLogin: true
