@@ -3,7 +3,7 @@ class ProfilesFormController {
     constructor($state, BaseService){
         this.$state = $state;
         this.BaseService = BaseService;
-        this.profile = [];
+        this.profile = {};
 
         this.modules = [
             {module: 'lead', name: 'Prospectos'},
@@ -15,43 +15,68 @@ class ProfilesFormController {
 
         this.modules.forEach((item) =>{
             this.permission_module[item.module] = this.permissions;
-
-            this[item.module] = {
-                module: true,
-                show: true,
-                create: true,
-                update: true,
-                delete: true
-            };
-
+            this.checkPermission(item.module, true);
         });
 
     }
 
-    allPermission(module, value){
+    allPermissionModules(value){
+
+        if(value === true){
+            this.modules.forEach((item) =>{
+                this.permission_module[item.module] = this.permissions;
+                this.checkPermission(item.module, true);
+            });
+        }else{
+            this.modules.forEach((item) =>{
+                this.permission_module[item.module] = [];
+                this.checkPermission(item.module, false);
+            });
+        }
+
+    }
+
+    allPermissionAction(action, value){
+
+        if(value === true){
+            this.modules.forEach((item) =>{
+                this.addPermission(item.module, action);
+                this.checkPermission(item.module, true, action)
+            });
+        }else{
+            this.modules.forEach((item) =>{
+                this.removePermission(item.module, action);
+                this.checkPermission(item.module, false, action);
+            });
+        }
+
+    }
+
+    allPermissionModule(module, value){
 
         if(value === true){
             this.permission_module[module] = this.permissions;
-            this[module] = {
-                module: true,
-                show: true,
-                create: true,
-                update: true,
-                delete: true
-            };
+            this.checkPermission(module, true);
         }else{
             this.permission_module[module] = [];
-            this[module] = {
-                module: false,
-                show: false,
-                create: false,
-                update: false,
-                delete: false
-            };
+            this.checkPermission(module, false);
         }
 
-        console.log('this.permission_module[module]');
-        console.log(this.permission_module[module]);
+    }
+
+    checkPermission(module, checkValue, action = 'all'){
+
+        if(action == 'all'){
+            this[module] = {
+                module: checkValue,
+                show: checkValue,
+                create: checkValue,
+                update: checkValue,
+                delete: checkValue
+            };
+        }else{
+            this[module][action] = checkValue;
+        }
 
     }
 
@@ -76,21 +101,24 @@ class ProfilesFormController {
     }
 
     create(){
-        console.log('this.permission_module');
-        console.log(this.permission_module);
 
-        this.BaseService.request(
+        this.profile.permissions = this.permission_module;
+
+        console.log('this.profile');
+        console.log(this.profile);
+
+        /*this.BaseService.request(
             {
                 endpoint: `profiles`,
                 method: 'POST',
                 dataName: 'profile',
-                dataObj: this.permission_module
+                dataObj: this.profile
             }
         ).then(({data}) => {
             console.log('data');
             console.log(data);
             //this.$state.go('app.role');
-        });
+        });*/
 
     }
 

@@ -19,14 +19,14 @@
                             <label for="name">Nombre</label>
                             <input type="text" id="name"
                                    class="form-control"
-                                   ng-model="$ctrl.permission_module.name">
+                                   ng-model="$ctrl.profile.name">
                         </div>
 
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <input type="text" id="description"
                                    class="form-control"
-                                   ng-model="$ctrl.permission_module.description">
+                                   ng-model="$ctrl.profile.description">
                         </div>
 
                         <h4>Seleccionar los privilegios para este perfil</h4>
@@ -35,23 +35,33 @@
                             <thead>
                             <tr>
                                 <th>
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.allPermissionModules($ctrl.allModules)"
+                                           ng-model="$ctrl.allModules">
                                     Módulo
                                 </th>
                                 <th class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.allPermissionAction('show',$ctrl.allShow)"
+                                           ng-model="$ctrl.allShow">
                                     Ver
                                 </th>
                                 <th class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.allPermissionAction('create',$ctrl.allCreate)"
+                                           ng-model="$ctrl.allCreate">
                                     Crear
                                 </th>
                                 <th class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.allPermissionAction('update',$ctrl.allUpdate)"
+                                           ng-model="$ctrl.allUpdate">
                                     Editar
                                 </th>
                                 <th class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.allPermissionAction('delete',$ctrl.allDelete)"
+                                           ng-model="$ctrl.allDelete">
                                     Borrar
                                 </th>
                             </tr>
@@ -60,7 +70,7 @@
                             <tr ng-repeat="module in $ctrl.modules track by $index">
                                 <td>
                                     <input type="checkbox"
-                                           ng-click="$ctrl.allPermission(module.module, $ctrl[module.module].module)"
+                                           ng-click="$ctrl.allPermissionModule(module.module, $ctrl[module.module].module)"
                                            ng-model="$ctrl[module.module].module">
                                     <span ng-bind="module.name"></span>
                                 </td>
