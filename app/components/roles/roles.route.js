@@ -1,16 +1,10 @@
-rolesRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
+rolesRoutes.$inject = ['$stateProvider'];
 
-function rolesRoutes($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise("/");
+function rolesRoutes($stateProvider) {
+    'use strict';
 
     $stateProvider
-        .state('app', {
-            abstract: true,
-            url: '/app',
-            template: '<app></app>'
-        })
-        .state('app.roles', {
+        .state('app.role', {
             url: '/roles',
             controller: 'RolesController',
             controllerAs: 'ctrl',
@@ -19,7 +13,7 @@ function rolesRoutes($stateProvider, $urlRouterProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.roles.form', {
+        .state('app.role.form', {
             url: '/create',
             controller: 'RolesFormController',
             controllerAs: 'ctrlForm',

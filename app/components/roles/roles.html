@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
 
-                <a class="btn btn-default" ui-sref="app.roles.form">
+                <a class="btn btn-default" ui-sref="app.role.form">
                     <i class="glyphicon glyphicon-plus"></i> Crear Rol
                 </a>
 
@@ -27,10 +27,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Prueba</td>
+                    <tr ng-repeat="role in $ctrl.roles track by $index">
+                        <td ng-bind="role.name"></td>
                         <td>
-                            <label class="label label-success">Activo</label>
+                            <span ng-bind="role.status"></span>
                         </td>
                         <td>
                             <button class="btn btn-default btn-xs">

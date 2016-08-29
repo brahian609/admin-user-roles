@@ -1,11 +1,10 @@
-profilesRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
+profilesRoutes.$inject = ['$stateProvider'];
 
-function profilesRoutes($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise("/");
+function profilesRoutes($stateProvider) {
+    'use strict';
 
     $stateProvider
-        .state('app.profiles', {
+        .state('app.profile', {
             url: '/profiles',
             controller: 'ProfilesController',
             controllerAs: 'ctrl',
@@ -14,11 +13,9 @@ function profilesRoutes($stateProvider, $urlRouterProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.profiles.form', {
+        .state('app.profile.form', {
             url: '/create',
-            controller: 'ProfilesFormController',
-            controllerAs: 'ctrlForm',
-            templateUrl: 'components/profiles/profiles-form/profiles-form.html'
+            template: '<profiles-form></profiles-form>'
         });
 }
 

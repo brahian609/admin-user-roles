@@ -12,14 +12,14 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
         if (toState.data && toState.data.requiresLogin) {
             let token = AuthTokenProvider.getToken();
 
-            if (!token) {
+            if (!token || jwtHelper.isTokenExpired(token) === true) {
                 event.preventDefault();
                 $state.go('login');
             }
 
-            var tokenPayLoad = jwtHelper.decodeToken(token);
-            var date = jwtHelper.getTokenExpirationDate(token);
-            var exp = jwtHelper.isTokenExpired(token);
+            var tokenPayLoad = jwtHelper.decodeToken(token),
+                date = jwtHelper.getTokenExpirationDate(token),
+                exp = jwtHelper.isTokenExpired(token);
 
             console.log('tokenPayLoad');
             console.log(tokenPayLoad, date, exp);

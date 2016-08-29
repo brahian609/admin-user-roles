@@ -12,21 +12,21 @@
             </div>
             <div class="panel-body">
 
-                <form>
+                <form ng-submit="$ctrl.create()">
 
                     <div class="row col-md-6">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" id="name"
                                    class="form-control"
-                                   ng-model="ctrlForm.name">
+                                   ng-model="$ctrl.profile.name">
                         </div>
 
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <input type="text" id="description"
                                    class="form-control"
-                                   ng-model="ctrlForm.description">
+                                   ng-model="$ctrl.profile.description">
                         </div>
 
                         <h4>Seleccionar los privilegios para este perfil</h4>
@@ -57,13 +57,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr ng-repeat="module in $ctrl.modules track by $index">
                                 <td>
-                                    <input type="checkbox">
-                                    Prospetos
+                                    <input type="checkbox"
+                                           ng-checked="true"
+                                           ng-model="$ctrl.permissions[module.module]">
+                                    <span ng-bind="module.name"></span>
                                 </td>
                                 <td class="text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox"
+                                           ng-click="$ctrl.permission(module.module, $ctrl[module.module].show)"
+                                           ng-model="$ctrl[module.module].show">
                                 </td>
                                 <td class="text-center">
                                     <input type="checkbox">
@@ -79,7 +83,7 @@
                             </tbody>
                         </table>
 
-                        <button ng-click="(ctrlForm.createForm == true) ? ctrlForm.create() : ctrlForm.update()" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             <i class="glyphicon glyphicon-floppy-disk"></i>
                             Guardar
                         </button>

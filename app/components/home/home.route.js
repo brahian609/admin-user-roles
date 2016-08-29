@@ -1,10 +1,14 @@
 homeRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function homeRoutes($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise("/");
+    'use strict';
 
     $stateProvider
+        .state('app', {
+            abstract: true,
+            url: '/app',
+            template: '<app></app>'
+        })
         .state('app.home', {
             url: '/home',
             controller: 'HomeController',

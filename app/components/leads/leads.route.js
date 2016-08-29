@@ -1,8 +1,7 @@
 leadsRoutes.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function leadsRoutes($stateProvider, $urlRouterProvider) {
-
-    $urlRouterProvider.otherwise("/");
+    'use strict';
 
     $stateProvider
         .state('app.lead', {
