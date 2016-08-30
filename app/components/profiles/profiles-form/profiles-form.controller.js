@@ -89,7 +89,20 @@ class ProfilesFormController {
     }
 
     addPermission(module, action){
-        this.permission_module[module] = [...this.permission_module[module], action];
+
+       var indexAction = true;
+       indexAction = this.permission_module[module].some((item, index) => {
+            if(item === action) {
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        if(indexAction === false){
+            this.permission_module[module] = [...this.permission_module[module], action];
+        }
+
     }
 
     removePermission(module, action){
