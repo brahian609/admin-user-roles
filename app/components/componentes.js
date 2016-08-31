@@ -3,6 +3,7 @@ import angular from 'angular';
 import login from './login/login';
 import errors from './errors/errors';
 import home from './home/home';
+import users from './users/users';
 import leads from './leads/leads';
 import contacts from './contacts/contacts';
 import roles from './roles/roles';
@@ -14,6 +15,7 @@ let componentsModule = angular.module('app.components', [
     login.name,
     errors.name,
     home.name,
+    users.name,
     leads.name,
     contacts.name,
     roles.name,

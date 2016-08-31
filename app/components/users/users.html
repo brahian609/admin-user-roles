@@ -1,0 +1,54 @@
+<ui-view>
+
+    <div class="col-lg-2">
+        <admin-nav></admin-nav>
+    </div>
+
+    <div class="col-lg-10">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Usuarios</h4>
+            </div>
+            <div class="panel-body">
+
+                <a class="btn btn-default" ui-sref="app.user.form">
+                    <i class="glyphicon glyphicon-plus"></i> Crear Usuario
+                </a>
+
+                <div class="clear">&nbsp;</div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Username</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in $ctrl.users track by $index">
+                        <td ng-bind="user.id"></td>
+                        <td ng-bind="user.first_name"></td>
+                        <td ng-bind="user.last_name"></td>
+                        <td>
+                            <span ng-bind="user.username"></span>
+                        </td>
+                        <td>
+                            <button ng-click="$ctrl.getUser(user.id)"
+                                    class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</ui-view>
