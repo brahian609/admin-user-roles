@@ -6,9 +6,7 @@ function rolesRoutes($stateProvider) {
     $stateProvider
         .state('app.role', {
             url: '/roles',
-            controller: 'RolesController',
-            controllerAs: 'ctrl',
-            templateUrl: 'components/roles/roles.html',
+            template: '<roles-form></roles-form>',
             data: {
                 requiresLogin: true
             }

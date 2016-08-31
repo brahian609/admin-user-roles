@@ -1,7 +1,7 @@
 import angular from 'angular';
-import RolesFormController from './roles-form.controller';
+import rolesFormComponent from './roles-form.component';
 
 let rolesFormModule = angular.module('app.components.rolesForm', [])
-    .controller('RolesFormController', RolesFormController);
+    .component('rolesForm', rolesFormComponent);
 
 export default rolesFormModule;

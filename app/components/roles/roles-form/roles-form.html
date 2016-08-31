@@ -12,43 +12,42 @@
             </div>
             <div class="panel-body">
 
-                <form ng-submit="ctrlForm.create()">
+                <form ng-submit="$ctrl.create()">
 
                     <div class="row col-md-6">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" id="name"
                                    class="form-control"
-                                   ng-model="ctrlForm.role.name">
+                                   ng-model="$ctrl.role.name">
                         </div>
 
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <input type="text" id="description"
                                    class="form-control"
-                                   ng-model="ctrlForm.role.description">
+                                   ng-model="$ctrl.role.description">
                         </div>
 
                         <div class="form-group">
                             <label for="status">Estado</label>
                             <select id="status"
                                     class="form-control"
-                                    ng-model="ctrlForm.role.status">
+                                    ng-model="$ctrl.role.status">
                                 <option value="1">Activo</option>
                                 <option value="0">Inactivo</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="privileges">Privilegios</label>
-                            <select id="privileges" multiple
-                                    class="form-control"
-                                    ng-model="ctrlForm.privileges">
-                                <option value="">Administrador</option>
-                                <option value="">Pos-Venta</option>
-                                <option value="">Consultor</option>
-                                <option value="">Digitador</option>
-                            </select>
+                            <label for="profiles">Privilegios</label>
+                            <tags-input id="profiles" ng-model="tags" add-on-paste="true">
+                                <auto-complete source="$ctrl.profiles"
+                                               min-length="0"
+                                               load-on-empty="true"
+                                               load-on-focus="true"
+                                ></auto-complete>
+                            </tags-input>
                         </div>
 
                         <button type="submit" class="btn btn-primary">

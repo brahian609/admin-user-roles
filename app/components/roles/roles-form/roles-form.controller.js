@@ -4,6 +4,7 @@ class RolesFormController {
         this.$state = $state;
         this.BaseService = BaseService;
         this.role = {};
+        this.getProfiles();
     }
 
     create(){
@@ -18,6 +19,32 @@ class RolesFormController {
             console.log('data');
             console.log(data);
             this.$state.go('app.role');
+        });
+    }
+
+    getProfiles(){
+        this.BaseService.request(
+            {
+                endpoint: `profiles`,
+                method: 'GET'
+            }
+        ).then(({data}) => {
+            console.log('data');
+            console.log(data);
+
+            var obj = {};
+            this.profiles =  [
+                { text: 'Tag1' },
+                { text: 'Tag2' },
+                { text: 'Tag3' }
+            ];
+            /*data.forEach((item) => {
+                //obj.id = item.id;
+                obj.text = item.name;
+                this.profiles = [...this.profiles, obj];
+            });
+            console.log('this.profiles');
+            console.log(this.profiles);*/
         });
     }
 
