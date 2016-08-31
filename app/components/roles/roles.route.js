@@ -6,16 +6,16 @@ function rolesRoutes($stateProvider) {
     $stateProvider
         .state('app.role', {
             url: '/roles',
-            template: '<roles-form></roles-form>',
+            controller: 'RolesController',
+            controllerAs: '$ctrl',
+            templateUrl: 'components/roles/roles.html',
             data: {
                 requiresLogin: true
             }
         })
         .state('app.role.form', {
             url: '/create',
-            controller: 'RolesFormController',
-            controllerAs: 'ctrlForm',
-            templateUrl: 'components/roles/roles-form/roles-form.html'
+            template: '<roles-form></roles-form>'
         });
 }
 

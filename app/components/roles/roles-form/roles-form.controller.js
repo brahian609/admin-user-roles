@@ -4,11 +4,18 @@ class RolesFormController {
         this.$state = $state;
         this.BaseService = BaseService;
         this.role = {};
+        this.privileges = [];
         this.getProfiles();
     }
 
     create(){
-        this.BaseService.request(
+        
+        this.role.privileges = this.privileges;
+
+        console.log('this.role');
+        console.log(this.role);
+        
+        /*this.BaseService.request(
             {
                 endpoint: `roles`,
                 method: 'POST',
@@ -19,7 +26,7 @@ class RolesFormController {
             console.log('data');
             console.log(data);
             this.$state.go('app.role');
-        });
+        });*/
     }
 
     getProfiles(){
@@ -29,22 +36,10 @@ class RolesFormController {
                 method: 'GET'
             }
         ).then(({data}) => {
-            console.log('data');
-            console.log(data);
-
-            var obj = {};
-            this.profiles =  [
-                { text: 'Tag1' },
-                { text: 'Tag2' },
-                { text: 'Tag3' }
-            ];
-            /*data.forEach((item) => {
-                //obj.id = item.id;
-                obj.text = item.name;
-                this.profiles = [...this.profiles, obj];
+            this.profiles =  [];
+            data.forEach((item) => {
+                this.profiles = [...this.profiles, {id: item.id, text: item.name}];
             });
-            console.log('this.profiles');
-            console.log(this.profiles);*/
         });
     }
 
