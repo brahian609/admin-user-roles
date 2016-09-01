@@ -7,6 +7,7 @@ class ProfilesFormController {
 
         this.modules = [
             {module: 'lead', name: 'Prospectos'},
+            {module: 'contact', name: 'Contactos'},
             {module: 'account', name: 'Cuentas'}
         ];
 
@@ -120,7 +121,7 @@ class ProfilesFormController {
         console.log('this.profile');
         console.log(this.profile);
 
-        /*this.BaseService.request(
+        this.BaseService.request(
             {
                 endpoint: `profiles`,
                 method: 'POST',
@@ -131,7 +132,7 @@ class ProfilesFormController {
             console.log('data');
             console.log(data);
             //this.$state.go('app.role');
-        });*/
+        });
 
     }
 
