@@ -54,11 +54,21 @@
                                    ng-model="$ctrl.user.password">
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="password_confir">Confirmar Contraseña</label>
                             <input type="password" id="password_confir"
                                    class="form-control"
                                    ng-model="$ctrl.user.password_confir">
+                        </div>-->
+
+                        <div class="form-group">
+                            <label for="role">Rol</label>
+                            <select id="role"
+                                    class="form-control"
+                                    ng-model="$ctrl.user.role_id"
+                                    ng-options="role.id as role.name for role in $ctrl.roles"
+                                    >
+                            </select>
                         </div>
 
                         <div class="form-group">
