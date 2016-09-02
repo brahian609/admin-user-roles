@@ -1,7 +1,8 @@
 class ProfilesController {
 
-    constructor(BaseService) {
+    constructor(BaseService, $state) {
         this.BaseService = BaseService;
+        this.$state = $state;
     }
 
     $onInit(){
@@ -37,9 +38,24 @@ class ProfilesController {
 
     }
 
+    delete(id){
+
+        this.BaseService.request(
+            {
+                endpoint: `profiles/${id}.json`,
+                method: 'DELETE'
+            }
+        ).then(response => {
+            console.log('response');
+            console.log(response);
+            this.$state.reload();
+        });
+
+    }
+
 
 }
 
-ProfilesController.$inject = ['BaseService'];
+ProfilesController.$inject = ['BaseService', '$state'];
 
 export default ProfilesController

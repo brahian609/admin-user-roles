@@ -5,33 +5,41 @@ class ProfilesFormController {
         this.BaseService = BaseService;
         this.profile = {};
 
-        this.modules = [
-            {module: 'lead', name: 'Prospectos'},
-            {module: 'contact', name: 'Contactos'},
-            {module: 'account', name: 'Cuentas'}
-        ];
+        this.get_crm_modules();
 
-        this.permissions = ['show', 'create', 'update', 'delete'];
+        this.permissions = ['show', 'create', 'update', 'destroy'];
         this.permission_module = {};
 
-        this.modules.forEach((item) =>{
-            this.permission_module[item.module] = this.permissions;
-            this.checkPermission(item.module, true);
-        });
+    }
 
+    get_crm_modules(){
+        this.BaseService.request(
+            {
+                endpoint: `crm_modules`,
+                method: 'GET'
+            }
+        ).then(({data}) => {
+            console.log('crm modules');
+            console.log(data);
+            this.modules = data;
+            this.modules.forEach((item) =>{
+                this.permission_module[item.name] = this.permissions;
+                this.checkPermission(item.name, true);
+            });
+        });
     }
 
     allPermissionModules(value){
 
         if(value === true){
             this.modules.forEach((item) =>{
-                this.permission_module[item.module] = this.permissions;
-                this.checkPermission(item.module, true);
+                this.permission_module[item.name] = this.permissions;
+                this.checkPermission(item.name, true);
             });
         }else{
             this.modules.forEach((item) =>{
-                this.permission_module[item.module] = [];
-                this.checkPermission(item.module, false);
+                this.permission_module[item.name] = [];
+                this.checkPermission(item.name, false);
             });
         }
 
@@ -41,13 +49,13 @@ class ProfilesFormController {
 
         if(value === true){
             this.modules.forEach((item) =>{
-                this.addPermission(item.module, action);
-                this.checkPermission(item.module, true, action)
+                this.addPermission(item.name, action);
+                this.checkPermission(item.name, true, action)
             });
         }else{
             this.modules.forEach((item) =>{
-                this.removePermission(item.module, action);
-                this.checkPermission(item.module, false, action);
+                this.removePermission(item.name, action);
+                this.checkPermission(item.name, false, action);
             });
         }
 
@@ -73,7 +81,7 @@ class ProfilesFormController {
                 show: checkValue,
                 create: checkValue,
                 update: checkValue,
-                delete: checkValue
+                destroy: checkValue
             };
         }else{
             this[module][action] = checkValue;
@@ -131,7 +139,7 @@ class ProfilesFormController {
         ).then(({data}) => {
             console.log('data');
             console.log(data);
-            //this.$state.go('app.role');
+            this.$state.go('app.profile');
         });
 
     }
