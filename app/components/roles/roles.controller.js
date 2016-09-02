@@ -1,7 +1,8 @@
 class RolesController {
 
-    constructor(BaseService) {
+    constructor(BaseService, $state) {
         this.BaseService = BaseService;
+        this.$state = $state;
         this.getRoles();
     }
 
@@ -34,8 +35,23 @@ class RolesController {
 
     }
 
+    delete(id){
+
+        this.BaseService.request(
+            {
+                endpoint: `roles/${id}.json`,
+                method: 'DELETE'
+            }
+        ).then(response => {
+            console.log('response');
+            console.log(response);
+            this.$state.reload();
+        });
+
+    }
+
 }
 
-RolesController.$inject = ['BaseService'];
+RolesController.$inject = ['BaseService', '$state'];
 
 export default RolesController

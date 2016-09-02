@@ -10,12 +10,12 @@ class RolesFormController {
 
     create(){
         
-        this.role.privileges = this.privileges;
+        this.role.profiles = this.privileges;
 
         console.log('this.role');
         console.log(this.role);
         
-        /*this.BaseService.request(
+        this.BaseService.request(
             {
                 endpoint: `roles`,
                 method: 'POST',
@@ -26,7 +26,7 @@ class RolesFormController {
             console.log('data');
             console.log(data);
             this.$state.go('app.role');
-        });*/
+        });
     }
 
     getProfiles(){
