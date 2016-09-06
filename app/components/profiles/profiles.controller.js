@@ -22,20 +22,12 @@ class ProfilesController {
         });
     }
 
-    getProfile(id){
-        this.BaseService.request(
-            {
-                endpoint: `profiles/${id}.json`,
-                method: 'GET'
-            }
-        ).then(({data}) => {
-            console.log('data');
-            console.log(data);
-        });
-    }
-
     update(id){
         this.$state.go('app.profile.update', {id});
+    }
+
+    view(id){
+        this.$state.go('app.profile.show', {id});
     }
 
     delete(id){

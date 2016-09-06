@@ -45,6 +45,32 @@ function profilesRoutes($stateProvider) {
                     });
                 }]
             }
+        })
+        .state('app.profile.show', {
+            url: '/:id/ver',
+            controller: ['profileData', function (profileData) {
+                let self = this;
+                self.profileData = profileData;
+            }],
+            controllerAs: '$ctrl',
+            template: `<profiles-form profile-data="$ctrl.profileData"></profiles-form>`,
+            data: {
+                requiresLogin: true
+            },
+            resolve: {
+                profileData: ['$q', '$stateParams', 'BaseService', ($q, $stateParams, BaseService) => {
+                    return $q((resolve, reject) => {
+                        BaseService.request(
+                            {
+                                endpoint: `profiles/${$stateParams.id}.json`,
+                                method: 'GET'
+                            }
+                        ).then(({data}) => {
+                            resolve(data);
+                        });
+                    });
+                }]
+            }
         });
 }
 

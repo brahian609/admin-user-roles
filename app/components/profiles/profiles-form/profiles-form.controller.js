@@ -13,7 +13,6 @@ class ProfilesFormController {
     }
 
     prepareAction(action){
-
         switch (action) {
             case 'form':
                 this.BaseService.getModules().then(data => {
@@ -22,6 +21,12 @@ class ProfilesFormController {
                 });
                 break;
             case 'update':
+            case 'show':
+
+                if(action === 'show'){
+                    this.isShow = true;
+                }
+
                 this.BaseService.getModules().then(data => {
                     this.modules = data;
                     this.setModulesPermission(false);
@@ -37,13 +42,7 @@ class ProfilesFormController {
 
         }
 
-    }
 
-    getModules(){
-        this.BaseService.getModules().then(data => {
-            this.modules = data;
-            //this.setModulesPermission();
-        });
     }
 
     setModulesPermission(value = true){
@@ -153,10 +152,7 @@ class ProfilesFormController {
     create(){
         this.profileData.permissions = this.permission_module;
 
-        console.log('this.profileData');
-        console.log(this.profileData);
-
-        /*this.BaseService.request(
+        this.BaseService.request(
             {
                 endpoint: `profiles`,
                 method: 'POST',
@@ -165,11 +161,24 @@ class ProfilesFormController {
             }
         ).then(({data}) => {
             this.$state.go('app.profile');
-        });*/
+        });
     }
 
     update(){
-        console.log("update");
+        this.profileData.permissions = this.permission_module;
+
+        this.BaseService.request(
+            {
+                endpoint: `profiles/${this.profileData.id}`,
+                method: 'PUT',
+                dataName: 'profile',
+                dataObj: this.profileData
+            }
+        ).then(response => {
+            console.log('response');
+            console.log(response);
+            this.$state.go('app.profile');
+        });
     }
 
 }
