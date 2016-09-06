@@ -35,6 +35,21 @@ class BaseService {
 
     }
 
+    getModules() {
+        return this.$q((resolve, reject) => {
+            this.request(
+                {
+                    endpoint: `crm_modules`,
+                    method: 'GET'
+                }
+            ).then(({data}) => {
+                resolve(data);
+            }).catch(reason =>
+                reject(reason)
+            );
+        });
+    }
+
     /*validar si el usuario tiene acceso al modulo*/
     check_navigation(module, modules) {
 

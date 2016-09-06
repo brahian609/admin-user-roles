@@ -9,7 +9,7 @@ class RolesFormController {
     }
 
     create(){
-        
+
         this.role.profiles = this.privileges;
 
         console.log('this.role');

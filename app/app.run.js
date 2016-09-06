@@ -6,8 +6,8 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
 
         var module = toState.name.split('.')[1];
-        console.log('module');
-        console.log(module);
+        /*console.log('module');
+        console.log(module);*/
 
         if (toState.data && toState.data.requiresLogin) {
             let token = AuthTokenProvider.getToken();
@@ -21,8 +21,8 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
                 date = jwtHelper.getTokenExpirationDate(token),
                 exp = jwtHelper.isTokenExpired(token);
 
-            console.log('tokenPayLoad');
-            console.log(tokenPayLoad, date, exp);
+            /*console.log('tokenPayLoad');
+            console.log(tokenPayLoad, date, exp);*/
 
             $rootScope.crm_modules = tokenPayLoad.crm_modules;
 

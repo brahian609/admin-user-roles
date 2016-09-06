@@ -3,29 +3,57 @@ class ProfilesFormController {
     constructor($state, BaseService){
         this.$state = $state;
         this.BaseService = BaseService;
-        this.profile = {};
-
-        this.get_crm_modules();
+        
+        this.action = this.$state.current.name.split('.')[2];
+        this.prepareAction(this.action);
 
         this.permissions = ['show', 'create', 'update', 'destroy'];
         this.permission_module = {};
 
     }
 
-    get_crm_modules(){
-        this.BaseService.request(
-            {
-                endpoint: `crm_modules`,
-                method: 'GET'
-            }
-        ).then(({data}) => {
-            console.log('crm modules');
-            console.log(data);
+    prepareAction(action){
+
+        switch (action) {
+            case 'form':
+                this.BaseService.getModules().then(data => {
+                    this.modules = data;
+                    this.setModulesPermission();
+                });
+                break;
+            case 'update':
+                this.BaseService.getModules().then(data => {
+                    this.modules = data;
+                    this.setModulesPermission(false);
+                    for (var module in this.profileData.permissions){
+                        this.checkPermission(module, false);
+                        this.permission_module[module] = this.profileData.permissions[module];
+                        this.profileData.permissions[module].forEach((permission, index) => {
+                            this.checkPermission(module, true, permission);
+                        })
+                    }
+                });
+                break;
+
+        }
+
+    }
+
+    getModules(){
+        this.BaseService.getModules().then(data => {
             this.modules = data;
-            this.modules.forEach((item) =>{
+            //this.setModulesPermission();
+        });
+    }
+
+    setModulesPermission(value = true){
+        this.modules.forEach((item) =>{
+            if(value === true){
                 this.permission_module[item.name] = this.permissions;
-                this.checkPermission(item.name, true);
-            });
+                this.checkPermission(item.name, value);
+            }else{
+                this.permission_module[item.name] = [];
+            }
         });
     }
 
@@ -123,25 +151,21 @@ class ProfilesFormController {
     }
 
     create(){
+        this.profileData.permissions = this.permission_module;
 
-        this.profile.permissions = this.permission_module;
+        console.log('this.profileData');
+        console.log(this.profileData);
 
-        console.log('this.profile');
-        console.log(this.profile);
-
-        this.BaseService.request(
+        /*this.BaseService.request(
             {
                 endpoint: `profiles`,
                 method: 'POST',
                 dataName: 'profile',
-                dataObj: this.profile
+                dataObj: this.profileData
             }
         ).then(({data}) => {
-            console.log('data');
-            console.log(data);
             this.$state.go('app.profile');
-        });
-
+        });*/
     }
 
     update(){

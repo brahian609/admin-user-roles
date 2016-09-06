@@ -10,7 +10,6 @@ class ProfilesController {
     }
 
     getProfiles(){
-
         this.BaseService.request(
             {
                 endpoint: `profiles`,
@@ -21,11 +20,9 @@ class ProfilesController {
             console.log(data);
             this.profiles = data;
         });
-
     }
 
     getProfile(id){
-
         this.BaseService.request(
             {
                 endpoint: `profiles/${id}.json`,
@@ -35,11 +32,13 @@ class ProfilesController {
             console.log('data');
             console.log(data);
         });
+    }
 
+    update(id){
+        this.$state.go('app.profile.update', {id});
     }
 
     delete(id){
-
         this.BaseService.request(
             {
                 endpoint: `profiles/${id}.json`,
@@ -50,7 +49,6 @@ class ProfilesController {
             console.log(response);
             this.$state.reload();
         });
-
     }
 
 

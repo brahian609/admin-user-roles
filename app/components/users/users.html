@@ -37,9 +37,15 @@
                             <span ng-bind="user.username"></span>
                         </td>
                         <td>
-                            <button ng-click="$ctrl.getUser(user.id)"
+                            <button uib-tooltip="Ver Detalles"
+                                    ng-click="$ctrl.getUser(user.id)"
                                     class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                            <button uib-tooltip="Eliminar"
+                                    ng-click="$ctrl.delete(user.id)"
+                                    class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </td>
                     </tr>

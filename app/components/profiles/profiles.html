@@ -27,7 +27,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="profile in $ctrl.profiles track by $index">
+                    <tr ng-repeat="profile in $ctrl.profiles track by $index"
+                        ng-dblclick="$ctrl.update(profile.id)">
                         <td ng-bind="profile.name"></td>
                         <td ng-bind="profile.description"></td>
                         <td>
@@ -35,6 +36,11 @@
                                     ng-click="$ctrl.getProfile(profile.id)"
                                     class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                            <button uib-tooltip="Modificar"
+                                    ng-click="$ctrl.update(profile.id)"
+                                    class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-edit"></i>
                             </button>
                             <button uib-tooltip="Eliminar"
                                     ng-click="$ctrl.delete(profile.id)"

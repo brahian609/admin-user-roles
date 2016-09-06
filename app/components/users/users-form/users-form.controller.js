@@ -8,23 +8,18 @@ class UsersFormController {
     }
 
     getRoles(){
-
         this.BaseService.request(
             {
                 endpoint: `roles`,
                 method: 'GET'
             }
         ).then(({data}) => {
-            console.log('data');
-            console.log(data);
             this.roles = data;
             this.user.role_id = data[0].id;
         });
-
     }
 
     create(){
-
         this.BaseService.request(
             {
                 endpoint: `users`,
@@ -33,8 +28,6 @@ class UsersFormController {
                 dataObj: this.user
             }
         ).then(({data}) => {
-            console.log('data');
-            console.log(data);
             this.$state.go('app.user');
         });
     }

@@ -5,7 +5,7 @@ let profilesFormComponent = {
     template,
     controller,
     bindings: {
-
+        profileData: '<'
     }
 };
 
