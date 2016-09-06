@@ -75,6 +75,23 @@ class BaseService {
 
     }
 
+    checkPermissionAction(permissions, action) {
+
+        console.log('permissions, action');
+        console.log(permissions, action);
+
+        var resutl = permissions.some((permission) => {
+            if(permission == action){
+                return true;
+            }else{
+                return false;
+            }
+        });
+
+        return resutl;
+
+    }
+
 }
 
 BaseService.$inject = ['API_URL', '$http', '$q', '$window', 'AuthTokenProvider', 'jwtHelper'];

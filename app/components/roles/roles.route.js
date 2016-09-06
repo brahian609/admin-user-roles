@@ -13,7 +13,7 @@ function rolesRoutes($stateProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.role.form', {
+        .state('app.role.create', {
             url: '/create',
             template: '<roles-form></roles-form>'
         });

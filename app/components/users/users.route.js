@@ -13,7 +13,7 @@ function usersRoutes($stateProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.user.form', {
+        .state('app.user.create', {
             url: '/create',
             template: '<users-form></users-form>'
         });

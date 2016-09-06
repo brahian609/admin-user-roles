@@ -5,9 +5,10 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
 
     $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams) => {
 
-        var module = toState.name.split('.')[1];
-        /*console.log('module');
-        console.log(module);*/
+        var module = toState.name.split('.')[1],
+            action = toState.name.split('.')[2];
+        /*console.log('module, action');
+        console.log(module, action);*/
 
         if (toState.data && toState.data.requiresLogin) {
             let token = AuthTokenProvider.getToken();
@@ -26,7 +27,17 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
 
             $rootScope.crm_modules = tokenPayLoad.crm_modules;
 
-            if(BaseService.check_navigation(module, tokenPayLoad.crm_modules) === false && module !== 'home'){
+            let checkNavigation = BaseService.check_navigation(module, tokenPayLoad.crm_modules),
+                permissions = tokenPayLoad.permissions[module],
+                checkPermissionAction = '';
+
+            if(action !== undefined){
+                checkPermissionAction = BaseService.checkPermissionAction(permissions, action);
+                console.log('checkPermissionAction');
+                console.log(checkPermissionAction);
+            }
+
+            if((checkNavigation === false || checkPermissionAction === false) && module !== 'home'){
                 event.preventDefault();
                 $state.go('app.404');
             }
