@@ -1,10 +1,12 @@
 class BaseService {
 
-    constructor(API_URL, $http, $q, $window){
+    constructor(API_URL, $http, $q, $window, AuthTokenProvider, jwtHelper){
         this.API_URL = API_URL;
         this.$http = $http;
         this.$q = $q;
         this.$window = $window;
+        this.AuthTokenProvider = AuthTokenProvider;
+        this.jwtHelper = jwtHelper;
     }
 
     request(req) {
@@ -33,6 +35,14 @@ class BaseService {
                 .catch(reason => reject(reason));
         });
 
+    }
+
+    getUserId() {
+        return this.$q((resolve) => {
+            let token = this.AuthTokenProvider.getToken(),
+                tokenPayLoad = this.jwtHelper.decodeToken(token);
+            resolve(tokenPayLoad.id);
+        });
     }
 
     getModules() {
@@ -67,6 +77,6 @@ class BaseService {
 
 }
 
-BaseService.$inject = ['API_URL', '$http', '$q', '$window'];
+BaseService.$inject = ['API_URL', '$http', '$q', '$window', 'AuthTokenProvider', 'jwtHelper'];
 
 export default BaseService;
