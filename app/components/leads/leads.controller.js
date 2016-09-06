@@ -20,7 +20,7 @@ class LeadsController {
 
     }
 
-    getCompany(id){
+    getLead(id){
 
         this.BaseService.request(
             {
@@ -28,6 +28,7 @@ class LeadsController {
                 method: 'GET'
             }
         ).then(({data}) => {
+            this.lead = data;
             console.log('data');
             console.log(data);
         });

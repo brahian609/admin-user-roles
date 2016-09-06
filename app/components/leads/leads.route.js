@@ -13,11 +13,9 @@ function leadsRoutes($stateProvider, $urlRouterProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.lead.form', {
-            url: '/create',
-            controller: 'LeadsFormController',
-            controllerAs: '$ctrl',
-            templateUrl: 'components/leads/leads-form/leads-form.html'
+        .state('app.lead.create', {
+            url: '/crear',
+            template: `<leads-form lead-data="{}"></leads-form>`
         });
 }
 

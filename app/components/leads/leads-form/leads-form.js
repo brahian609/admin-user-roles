@@ -1,7 +1,7 @@
 import angular from 'angular';
-import LeadsFormController from './leads-form.controller';
+import leadsFormComponent from './leads-form.component';
 
-let leadsFormModule = angular.module('leadsForm', [])
-    .controller('LeadsFormController', LeadsFormController);
+let leadsFormModule = angular.module('app.components.leadsForm', [])
+    .component('leadsForm', leadsFormComponent);
 
 export default leadsFormModule;
