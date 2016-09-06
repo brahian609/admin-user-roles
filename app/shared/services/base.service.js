@@ -62,24 +62,18 @@ class BaseService {
 
     /*validar si el usuario tiene acceso al modulo*/
     check_navigation(module, modules) {
-
-        var validNav = modules.filter((element) => {
-            return element == module;
+        var validNav = modules.some((element) => {
+            if(element == module){
+                return true;
+            }else{
+                return false;
+            }
         });
 
-        if(validNav.length === 0){
-            return false;
-        }else{
-            return true;
-        }
-
+        return validNav;
     }
 
     checkPermissionAction(permissions, action) {
-
-        console.log('permissions, action');
-        console.log(permissions, action);
-
         var resutl = permissions.some((permission) => {
             if(permission == action){
                 return true;
@@ -89,7 +83,6 @@ class BaseService {
         });
 
         return resutl;
-
     }
 
 }

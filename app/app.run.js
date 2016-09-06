@@ -33,8 +33,6 @@ function appRun($state, $rootScope, AuthTokenProvider, jwtHelper, BaseService) {
 
             if(action !== undefined){
                 checkPermissionAction = BaseService.checkPermissionAction(permissions, action);
-                console.log('checkPermissionAction');
-                console.log(checkPermissionAction);
             }
 
             if((checkNavigation === false || checkPermissionAction === false) && module !== 'home'){
