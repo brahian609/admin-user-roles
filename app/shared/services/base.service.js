@@ -20,9 +20,7 @@ class BaseService {
         let config = {
             url: `${url}/${req.endpoint}`,
             method: req.method,
-            data: {
-                [req.dataName || '']: req.dataObj || ''
-            },
+            data: req.dataObj,
             headers: {
                 'Accept': req.accept || 'application/json',
                 'Content-Type': req.content || 'application/json'

@@ -6,23 +6,35 @@ class LeadsFormController {
     }
 
     $onInit(){
-        this.lead = {};
+        this.attributes = {};
         this.BaseService.getUserId().then(response => {
-            this.lead.user_id = response;
+            this.user_id = response;
         });
     }
 
     create(){
 
-        console.log('this.lead');
-        console.log(this.lead);
+        var dataLead = {
+            data: {
+                type: 'leads',
+                attributes: this.attributes
+            },
+            relationships: {
+                user: {
+                    data: {
+                        type: 'users',
+                        id: this.user_id
+                    }
+                }
+            }
+        };
 
         this.BaseService.request(
             {
                 endpoint: `leads`,
                 method: 'POST',
-                dataName: 'lead',
-                dataObj: this.lead
+                //dataName: 'data',
+                dataObj: dataLead
             }
         ).then(({data}) => {
             console.log('data');
