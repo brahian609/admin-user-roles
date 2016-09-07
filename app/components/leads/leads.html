@@ -28,10 +28,10 @@
                     <tbody>
                     <tr ng-repeat="lead in $ctrl.leads track by $index ">
                         <td ng-bind="lead.id"></td>
-                        <td ng-bind="lead.name"></td>
-                        <td ng-bind="lead.last_name"></td>
-                        <td ng-bind="lead.identification"></td>
-                        <td ng-bind="lead.primary_email"></td>
+                        <td ng-bind="lead.attributes.name"></td>
+                        <td ng-bind="lead.attributes['last-name']"></td>
+                        <td ng-bind="lead.attributes.identification"></td>
+                        <td ng-bind="lead.attributes['primary-email']"></td>
                         <td>
                             <button uib-tooltip="Ver Detalles"
                                     ng-click="$ctrl.getLead(lead.id)"

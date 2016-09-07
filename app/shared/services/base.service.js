@@ -31,7 +31,7 @@ class BaseService {
 
         return this.$q((resolve, reject) => {
             this.$http(config)
-                .then(promise => resolve(promise))
+                .then(({data}) => resolve(data))
                 .catch(reason => reject(reason));
         });
 
