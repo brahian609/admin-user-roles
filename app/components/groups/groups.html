@@ -1,0 +1,57 @@
+<ui-view>
+
+    <div class="col-lg-2">
+        <admin-nav></admin-nav>
+    </div>
+
+    <div class="col-lg-10">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Grupos</h4>
+            </div>
+            <div class="panel-body">
+
+                <a class="btn btn-default" ui-sref="app.group.create">
+                    <i class="glyphicon glyphicon-plus"></i> Crear Grupo
+                </a>
+
+                <div class="clear">&nbsp;</div>
+
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="group in $ctrl.groups track by $index">
+                        <td ng-bind="group.attributes.name"></td>
+                        <td>
+                            <span ng-bind="group.attributes.description"></span>
+                        </td>
+                        <td>
+                            <button class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                            <button uib-tooltip="Modificar"
+                                    ng-click="$ctrl.prepareUpdate(group.id)" class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </button>
+                            <button uib-tooltip="Eliminar"
+                                    ng-click="$ctrl.delete(group.id)" class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+</ui-view>

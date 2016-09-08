@@ -1,0 +1,62 @@
+<div>
+
+    <div class="col-lg-2">
+        <admin-nav></admin-nav>
+    </div>
+
+    <div class="col-lg-10">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Crear Grupo</h4>
+            </div>
+            <div class="panel-body">
+
+                <form ng-submit="($ctrl.action == 'create') ? $ctrl.create() : $ctrl.update()">
+
+                    <div class="row col-md-6">
+                        <div class="form-group">
+                            <label for="name">Nombre Grupo</label>
+                            <input type="text" id="name"
+                                   class="form-control"
+                                   ng-model="$ctrl.attributes.name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Descripción</label>
+                            <input type="text" id="description"
+                                   class="form-control"
+                                   ng-model="$ctrl.attributes.description">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="members">Miembros Grupo</label>
+                            <tags-input id="members"
+                                        ng-model="$ctrl.members"
+                                        on-tag-added="$ctrl.addMember($tag)"
+                                        on-tag-removed="$ctrl.removeMember($tag)"
+                                        placeholder="Añadir Usuarios, Roles..">
+                                <auto-complete source="$ctrl.assigned"
+                                               min-length="0"
+                                               load-on-empty="true"
+                                               load-on-focus="true"
+                                ></auto-complete>
+                            </tags-input>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-floppy-disk"></i>
+                            Guardar
+                        </button>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
