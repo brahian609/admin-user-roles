@@ -8,7 +8,7 @@
             </div>
             <div class="panel-body">
 
-                <form ng-submit="$ctrl.create()">
+                <form ng-submit="($ctrl.action == 'create') ? $ctrl.create() : $ctrl.update()">
 
                     <div class="row col-md-6">
                         <div class="form-group">
@@ -135,6 +135,16 @@
                             <input type="text" id="lead_state"
                                    class="form-control"
                                    ng-model="$ctrl.attributes['lead-state']">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assigned_to">Asignado a</label>
+                            <select id="assigned_to"
+                                    class="form-control"
+                                    ng-model="$ctrl.assigned_to"
+                                    ng-options="assigned.id as assigned.attributes.username for assigned in $ctrl.assigned">
+
+                            </select>
                         </div>
 
                         <div class="form-group">

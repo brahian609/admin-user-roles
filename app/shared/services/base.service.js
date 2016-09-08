@@ -83,6 +83,19 @@ class BaseService {
         return resutl;
     }
 
+    parseRoute(route, getter) {
+
+        let number = 0;
+        if(getter == 'module'){
+            number = 1;
+        }else if(getter == 'action'){
+            number = 2;
+        }
+
+        return route.split('.')[number];
+
+    }
+
 }
 
 BaseService.$inject = ['API_URL', '$http', '$q', '$window', 'AuthTokenProvider', 'jwtHelper'];
