@@ -4,7 +4,7 @@ class ProfilesFormController {
         this.$state = $state;
         this.BaseService = BaseService;
         
-        this.action = this.$state.current.name.split('.')[2];
+        this.action = BaseService.parseRoute(this.$state.current.name, 'action');
         this.prepareAction(this.action);
 
         this.permissions = ['show', 'create', 'update', 'destroy'];
@@ -14,7 +14,8 @@ class ProfilesFormController {
 
     prepareAction(action){
         switch (action) {
-            case 'form':
+            case 'create':
+                this.attributes = this.profileData;
                 this.BaseService.getModules().then(data => {
                     this.modules = data;
                     this.setModulesPermission();
@@ -27,13 +28,15 @@ class ProfilesFormController {
                     this.isShow = true;
                 }
 
+                this.attributes = this.profileData.attributes;
+
                 this.BaseService.getModules().then(data => {
                     this.modules = data;
                     this.setModulesPermission(false);
-                    for (var module in this.profileData.permissions){
+                    for (var module in this.profileData.attributes['full-permissions']){
                         this.checkPermission(module, false);
-                        this.permission_module[module] = this.profileData.permissions[module];
-                        this.profileData.permissions[module].forEach((permission, index) => {
+                        this.permission_module[module] = this.profileData.attributes['full-permissions'][module];
+                        this.profileData.attributes['full-permissions'][module].forEach((permission, index) => {
                             this.checkPermission(module, true, permission);
                         })
                     }
@@ -42,16 +45,15 @@ class ProfilesFormController {
 
         }
 
-
     }
 
     setModulesPermission(value = true){
         this.modules.forEach((item) =>{
             if(value === true){
-                this.permission_module[item.name] = this.permissions;
-                this.checkPermission(item.name, value);
+                this.permission_module[item.attributes.name] = this.permissions;
+                this.checkPermission(item.attributes.name, value);
             }else{
-                this.permission_module[item.name] = [];
+                this.permission_module[item.attributes.name] = [];
             }
         });
     }
@@ -60,13 +62,13 @@ class ProfilesFormController {
 
         if(value === true){
             this.modules.forEach((item) =>{
-                this.permission_module[item.name] = this.permissions;
-                this.checkPermission(item.name, true);
+                this.permission_module[item.attributes.name] = this.permissions;
+                this.checkPermission(item.attributes.name, true);
             });
         }else{
             this.modules.forEach((item) =>{
-                this.permission_module[item.name] = [];
-                this.checkPermission(item.name, false);
+                this.permission_module[item.attributes.name] = [];
+                this.checkPermission(item.attributes.name, false);
             });
         }
 
@@ -76,13 +78,13 @@ class ProfilesFormController {
 
         if(value === true){
             this.modules.forEach((item) =>{
-                this.addPermission(item.name, action);
-                this.checkPermission(item.name, true, action)
+                this.addPermission(item.attributes.name, action);
+                this.checkPermission(item.attributes.name, true, action)
             });
         }else{
             this.modules.forEach((item) =>{
-                this.removePermission(item.name, action);
-                this.checkPermission(item.name, false, action);
+                this.removePermission(item.attributes.name, action);
+                this.checkPermission(item.attributes.name, false, action);
             });
         }
 
@@ -149,30 +151,43 @@ class ProfilesFormController {
         });
     }
 
+    prepareData() {
+
+        this.attributes['full-permissions'] = this.permission_module;
+
+        let data = {
+            data: {
+                type: 'profiles',
+                attributes: this.attributes
+            }
+        };
+        return data;
+    }
+
     create(){
-        this.profileData.permissions = this.permission_module;
+        let data = this.prepareData();
 
         this.BaseService.request(
             {
                 endpoint: `profiles`,
                 method: 'POST',
-                dataName: 'profile',
-                dataObj: this.profileData
+                dataObj: data
             }
-        ).then(({data}) => {
+        ).then(data => {
+            console.log('data');
+            console.log(data);
             this.$state.go('app.profile');
         });
     }
 
     update(){
-        this.profileData.permissions = this.permission_module;
+        let data = this.prepareData();
 
         this.BaseService.request(
             {
                 endpoint: `profiles/${this.profileData.id}`,
                 method: 'PUT',
-                dataName: 'profile',
-                dataObj: this.profileData
+                dataObj: data
             }
         ).then(response => {
             console.log('response');

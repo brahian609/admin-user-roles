@@ -16,8 +16,6 @@ class ProfilesController {
                 method: 'GET'
             }
         ).then(({data}) => {
-            console.log('data');
-            console.log(data);
             this.profiles = data;
         });
     }

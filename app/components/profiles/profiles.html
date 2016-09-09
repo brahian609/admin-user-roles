@@ -12,7 +12,7 @@
             </div>
             <div class="panel-body">
 
-                <a class="btn btn-default" ui-sref="app.profile.form">
+                <a class="btn btn-default" ui-sref="app.profile.create">
                     <i class="glyphicon glyphicon-plus"></i> Crear Perfil
                 </a>
 
@@ -22,15 +22,15 @@
                     <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Descrición</th>
+                        <th>Descripción</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="profile in $ctrl.profiles track by $index"
                         ng-dblclick="$ctrl.view(profile.id)">
-                        <td ng-bind="profile.name"></td>
-                        <td ng-bind="profile.description"></td>
+                        <td ng-bind="profile.attributes.name"></td>
+                        <td ng-bind="profile.attributes.description"></td>
                         <td>
                             <button uib-tooltip="Ver Detalles"
                                     ng-click="$ctrl.view(profile.id)"
