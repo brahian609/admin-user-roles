@@ -33,7 +33,7 @@ function groupsRoutes($stateProvider) {
                     return $q((resolve, reject) => {
                         BaseService.request(
                             {
-                                endpoint: `groups/${$stateParams.id}`,
+                                endpoint: `groups/${$stateParams.id}?include=users`,
                                 method: 'GET'
                             }
                         ).then(data => {
