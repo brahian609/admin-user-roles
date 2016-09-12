@@ -39,7 +39,7 @@ class RolesController {
 
         this.BaseService.request(
             {
-                endpoint: `roles/${id}.json`,
+                endpoint: `roles/${id}`,
                 method: 'DELETE'
             }
         ).then(response => {

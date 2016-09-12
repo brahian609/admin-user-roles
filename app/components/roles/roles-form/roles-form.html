@@ -12,28 +12,28 @@
             </div>
             <div class="panel-body">
 
-                <form ng-submit="$ctrl.create()">
+                <form ng-submit="($ctrl.action == 'create') ? $ctrl.create() : $ctrl.update()">
 
                     <div class="row col-md-6">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" id="name"
                                    class="form-control"
-                                   ng-model="$ctrl.role.name">
+                                   ng-model="$ctrl.attributes.name">
                         </div>
 
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <input type="text" id="description"
                                    class="form-control"
-                                   ng-model="$ctrl.role.description">
+                                   ng-model="$ctrl.attributes.description">
                         </div>
 
                         <div class="form-group">
                             <label for="status">Estado</label>
                             <select id="status"
                                     class="form-control"
-                                    ng-model="$ctrl.role.status">
+                                    ng-model="$ctrl.attributes.status">
                                 <option value="1">Activo</option>
                                 <option value="0">Inactivo</option>
                             </select>
@@ -41,7 +41,11 @@
 
                         <div class="form-group">
                             <label for="privileges">Perfiles</label>
-                            <tags-input id="privileges" ng-model="$ctrl.privileges" placeholder="Añadir perfil">
+                            <tags-input id="privileges"
+                                        ng-model="$ctrl.members"
+                                        on-tag-added="$ctrl.addProfile($tag)"
+                                        on-tag-removed="$ctrl.removeProfile($tag)"
+                                        placeholder="Añadir perfil">
                                 <auto-complete source="$ctrl.profiles"
                                                min-length="0"
                                                load-on-empty="true"

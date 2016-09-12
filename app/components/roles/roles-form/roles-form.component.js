@@ -5,7 +5,7 @@ let rolesFormComponent = {
     template,
     controller,
     bindings: {
-
+        roleData: '<'
     }
 };
 
