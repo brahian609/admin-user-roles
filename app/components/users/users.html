@@ -31,20 +31,23 @@
                     <tbody>
                     <tr ng-repeat="user in $ctrl.users track by $index">
                         <td ng-bind="user.id"></td>
-                        <td ng-bind="user.first_name"></td>
-                        <td ng-bind="user.last_name"></td>
+                        <td ng-bind="user.attributes['first-name']"></td>
+                        <td ng-bind="user.attributes['last-name']"></td>
                         <td>
-                            <span ng-bind="user.username"></span>
+                            <span ng-bind="user.attributes['username']"></span>
                         </td>
                         <td>
                             <button uib-tooltip="Ver Detalles"
-                                    ng-click="$ctrl.getUser(user.id)"
                                     class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
                             </button>
-                            <button uib-tooltip="Eliminar"
-                                    ng-click="$ctrl.delete(user.id)"
+                            <button uib-tooltip="Modificar"
+                                    ui-sref="app.user.update({id: user.id})"
                                     class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-edit"></i>
+                            </button>
+                            <button uib-tooltip="Eliminar"
+                                    ng-click="$ctrl.delete(user.id)" class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </td>

@@ -5,7 +5,7 @@ let usersFormComponent = {
     template,
     controller,
     bindings: {
-
+        userData: '<'
     }
 };
 

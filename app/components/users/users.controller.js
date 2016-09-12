@@ -17,22 +17,10 @@ class UsersController {
         });
     }
 
-    getUser(id){
-        this.BaseService.request(
-            {
-                endpoint: `users/${id}.json`,
-                method: 'GET'
-            }
-        ).then(({data}) => {
-            console.log('data');
-            console.log(data);
-        });
-    }
-
     delete(id){
         this.BaseService.request(
             {
-                endpoint: `users/${id}.json`,
+                endpoint: `users/${id}`,
                 method: 'DELETE'
             }
         ).then(response => {

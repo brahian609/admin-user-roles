@@ -21,20 +21,6 @@ class RolesController {
 
     }
 
-    getRole(id){
-
-        this.BaseService.request(
-            {
-                endpoint: `role/${id}.json`,
-                method: 'GET'
-            }
-        ).then(({data}) => {
-            console.log('data');
-            console.log(data);
-        });
-
-    }
-
     delete(id){
 
         this.BaseService.request(
