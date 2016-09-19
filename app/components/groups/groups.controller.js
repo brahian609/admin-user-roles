@@ -1,35 +1,46 @@
-class UsersController {
+class GroupsController {
 
     constructor(BaseService, $state) {
         this.BaseService = BaseService;
         this.$state = $state;
-        this.getUsers();
     }
 
-    getUsers(){
+    $onInit(){
+        this.getGroups();
+    }
+
+    getGroups(){
         this.BaseService.request(
             {
-                endpoint: `users`,
+                endpoint: `groups`,
                 method: 'GET'
             }
         ).then(({data}) => {
-            this.users = data;
+            this.groups = data;
         });
     }
 
+    prepareUpdate(id){
+        this.$state.go('app.group.update', {id});
+    }
+
     delete(id){
+
         this.BaseService.request(
             {
-                endpoint: `users/${id}`,
+                endpoint: `groups/${id}.json`,
                 method: 'DELETE'
             }
         ).then(response => {
+            console.log('response');
+            console.log(response);
             this.$state.reload();
         });
+
     }
 
 }
 
-UsersController.$inject = ['BaseService', '$state'];
+GroupsController.$inject = ['BaseService', '$state'];
 
-export default UsersController
+export default GroupsController

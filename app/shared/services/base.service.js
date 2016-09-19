@@ -20,9 +20,7 @@ class BaseService {
         let config = {
             url: `${url}/${req.endpoint}`,
             method: req.method,
-            data: {
-                [req.dataName || '']: req.dataObj || ''
-            },
+            data: req.dataObj,
             headers: {
                 'Accept': req.accept || 'application/json',
                 'Content-Type': req.content || 'application/json'
@@ -31,7 +29,7 @@ class BaseService {
 
         return this.$q((resolve, reject) => {
             this.$http(config)
-                .then(promise => resolve(promise))
+                .then(({data}) => resolve(data))
                 .catch(reason => reject(reason));
         });
 
@@ -83,6 +81,19 @@ class BaseService {
         });
 
         return resutl;
+    }
+
+    parseRoute(route, getter) {
+
+        let number = 0;
+        if(getter == 'module'){
+            number = 1;
+        }else if(getter == 'action'){
+            number = 2;
+        }
+
+        return route.split('.')[number];
+
     }
 
 }

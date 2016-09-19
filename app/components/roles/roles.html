@@ -28,13 +28,18 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="role in $ctrl.roles track by $index">
-                        <td ng-bind="role.name"></td>
+                        <td ng-bind="role.attributes.name"></td>
                         <td>
-                            <span ng-bind="role.status"></span>
+                            <span ng-bind="role.attributes.status"></span>
                         </td>
                         <td>
                             <button class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
+                            </button>
+                            <button uib-tooltip="Modificar"
+                                    ui-sref="app.role.update({id: role.id})"
+                                    class="btn btn-default btn-xs">
+                                <i class="glyphicon glyphicon-edit"></i>
                             </button>
                             <button uib-tooltip="Eliminar"
                                     ng-click="$ctrl.delete(role.id)" class="btn btn-default btn-xs">

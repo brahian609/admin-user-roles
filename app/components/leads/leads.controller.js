@@ -1,7 +1,8 @@
 class LeadsController {
 
-    constructor(BaseService) {
+    constructor(BaseService, $state) {
         this.BaseService = BaseService;
+        this.$state = $state;
         this.getLeads();
     }
 
@@ -20,23 +21,12 @@ class LeadsController {
 
     }
 
-    getLead(id){
-
-        this.BaseService.request(
-            {
-                endpoint: `leads/${id}.json`,
-                method: 'GET'
-            }
-        ).then(({data}) => {
-            this.lead = data;
-            console.log('data');
-            console.log(data);
-        });
-
+    prepareUdate(id){
+        this.$state.go('app.lead.update', {id});
     }
 
 }
 
-LeadsController.$inject = ['BaseService'];
+LeadsController.$inject = ['BaseService', '$state'];
 
 export default LeadsController

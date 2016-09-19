@@ -8,52 +8,51 @@ class RolesFormController {
     $onInit(){
 
         this.members = [];
-        this.getProfiles();
+        this.assigned =  [];
+        this.getAssigned();
         this.action = this.BaseService.parseRoute(this.$state.current.name, 'action');
 
         switch (this.action) {
             case 'create':
-                this.profilesArr = [];
-                this.attributes = this.roleData;
+                this.membersGroup = [];
+                this.attributes = this.groupData;
                 break;
             case 'update':
-                console.log('this.roleData');
-                console.log(this.roleData);
-                this.attributes = this.roleData.data.attributes;
-                this.profilesArr = this.roleData.data.relationships.profiles.data;
-                this.roleData.included.forEach((item) => {
-                    this.members = [...this.members, {id: item.id, text: item.attributes.name}];
+                this.attributes = this.groupData.data.attributes;
+                this.membersGroup = this.groupData.data.relationships.users.data;
+
+                this.groupData.included.forEach((item) => {
+                    this.members = [...this.members, {id: item.id, text: item.attributes.username}];
                 });
                 break;
         }
     }
 
-    getProfiles(){
+    getAssigned(){
         this.BaseService.request(
             {
-                endpoint: `profiles`,
+                endpoint: `users`,
                 method: 'GET'
             }
         ).then(({data}) => {
-            this.profiles =  [];
             data.forEach((item) => {
-                this.profiles = [...this.profiles, {id: item.id, text: item.attributes.name}];
+                this.assigned = [...this.assigned, {id: item.id, text: item.attributes.username}];
             });
         });
     }
 
-    addProfile(dataProfile){
-        let profile = {
-            type: 'profiles',
-            id: dataProfile.id
+    addMember(dataMember){
+        let member = {
+            type: 'users',
+            id: dataMember.id
         };
-        this.profilesArr = [...this.profilesArr, profile];
+        this.membersGroup = [...this.membersGroup, member];
     }
 
-    removeProfile(dataProfile){
-        this.profilesArr.forEach((item, index) => {
-            if(dataProfile.id == item.id){
-                this.profilesArr = this.profilesArr.slice(0,index).concat(this.profilesArr.slice(index+1))
+    removeMember(dataMember){
+        this.membersGroup.forEach((item, index) => {
+            if(dataMember.id == item.id){
+                this.membersGroup = this.membersGroup.slice(0,index).concat(this.membersGroup.slice(index+1))
             }
         });
     }
@@ -61,11 +60,11 @@ class RolesFormController {
     prepareData() {
         let data = {
             data: {
-                type: 'roles',
+                type: 'groups',
                 attributes: this.attributes,
                 relationships: {
-                    profiles: {
-                        data: this.profilesArr
+                    users: {
+                        data: this.membersGroup
                     }
                 }
             }
@@ -74,19 +73,24 @@ class RolesFormController {
     }
 
     create(){
+
         let data = this.prepareData();
+
+        console.log('data');
+        console.log(data);
 
         this.BaseService.request(
             {
-                endpoint: `roles`,
+                endpoint: `groups`,
                 method: 'POST',
                 dataObj: data
             }
         ).then(({data}) => {
             console.log('data');
             console.log(data);
-            this.$state.go('app.role');
+            this.$state.go('app.group');
         });
+
     }
 
     update(){
@@ -94,14 +98,14 @@ class RolesFormController {
 
         this.BaseService.request(
             {
-                endpoint: `roles/${this.roleData.data.id}`,
+                endpoint: `groups/${this.groupData.data.id}`,
                 method: 'PUT',
                 dataObj: data
             }
         ).then(({data}) => {
             console.log('data');
             console.log(data);
-            this.$state.go('app.role');
+            this.$state.go('app.group');
         });
     }
 

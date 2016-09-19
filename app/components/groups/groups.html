@@ -8,12 +8,12 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Usuarios</h4>
+                <h4>Grupos</h4>
             </div>
             <div class="panel-body">
 
-                <a class="btn btn-default" ui-sref="app.user.create">
-                    <i class="glyphicon glyphicon-plus"></i> Crear Usuario
+                <a class="btn btn-default" ui-sref="app.group.create">
+                    <i class="glyphicon glyphicon-plus"></i> Crear Grupo
                 </a>
 
                 <div class="clear">&nbsp;</div>
@@ -21,33 +21,27 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Username</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="user in $ctrl.users track by $index">
-                        <td ng-bind="user.id"></td>
-                        <td ng-bind="user.attributes['first-name']"></td>
-                        <td ng-bind="user.attributes['last-name']"></td>
+                    <tr ng-repeat="group in $ctrl.groups track by $index">
+                        <td ng-bind="group.attributes.name"></td>
                         <td>
-                            <span ng-bind="user.attributes['username']"></span>
+                            <span ng-bind="group.attributes.description"></span>
                         </td>
                         <td>
-                            <button uib-tooltip="Ver Detalles"
-                                    class="btn btn-default btn-xs">
+                            <button class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-eye-open"></i>
                             </button>
                             <button uib-tooltip="Modificar"
-                                    ui-sref="app.user.update({id: user.id})"
-                                    class="btn btn-default btn-xs">
+                                    ng-click="$ctrl.prepareUpdate(group.id)" class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-edit"></i>
                             </button>
                             <button uib-tooltip="Eliminar"
-                                    ng-click="$ctrl.delete(user.id)" class="btn btn-default btn-xs">
+                                    ng-click="$ctrl.delete(group.id)" class="btn btn-default btn-xs">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </button>
                         </td>

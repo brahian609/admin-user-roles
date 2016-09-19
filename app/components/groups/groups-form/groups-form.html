@@ -8,7 +8,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>Crear Rol</h4>
+                <h4>Crear Grupo</h4>
             </div>
             <div class="panel-body">
 
@@ -16,7 +16,7 @@
 
                     <div class="row col-md-6">
                         <div class="form-group">
-                            <label for="name">Nombre</label>
+                            <label for="name">Nombre Grupo</label>
                             <input type="text" id="name"
                                    class="form-control"
                                    ng-model="$ctrl.attributes.name">
@@ -30,28 +30,19 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="status">Estado</label>
-                            <select id="status"
-                                    class="form-control"
-                                    ng-model="$ctrl.attributes.status">
-                                <option value="1">Activo</option>
-                                <option value="0">Inactivo</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="privileges">Perfiles</label>
-                            <tags-input id="privileges"
+                            <label for="members">Miembros Grupo</label>
+                            <tags-input id="members"
                                         ng-model="$ctrl.members"
-                                        on-tag-added="$ctrl.addProfile($tag)"
-                                        on-tag-removed="$ctrl.removeProfile($tag)"
-                                        placeholder="Añadir perfil">
-                                <auto-complete source="$ctrl.profiles"
+                                        on-tag-added="$ctrl.addMember($tag)"
+                                        on-tag-removed="$ctrl.removeMember($tag)"
+                                        placeholder="Añadir Usuarios, Roles..">
+                                <auto-complete source="$ctrl.assigned"
                                                min-length="0"
                                                load-on-empty="true"
                                                load-on-focus="true"
                                 ></auto-complete>
                             </tags-input>
+
                         </div>
 
                         <button type="submit" class="btn btn-primary">

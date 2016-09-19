@@ -13,7 +13,7 @@ function profilesRoutes($stateProvider) {
                 requiresLogin: true
             }
         })
-        .state('app.profile.form', {
+        .state('app.profile.create', {
             url: '/crear',
             template: '<profiles-form profile-data="{}"></profiles-form>',
             data: {
@@ -36,7 +36,7 @@ function profilesRoutes($stateProvider) {
                     return $q((resolve, reject) => {
                         BaseService.request(
                             {
-                                endpoint: `profiles/${$stateParams.id}.json`,
+                                endpoint: `profiles/${$stateParams.id}`,
                                 method: 'GET'
                             }
                         ).then(({data}) => {

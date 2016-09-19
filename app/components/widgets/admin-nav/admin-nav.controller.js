@@ -5,7 +5,8 @@ class AdminNavController {
         this.links = [
             {name: 'Usuarios', route: 'app.user'},
             {name: 'Roles', route: 'app.role'},
-            {name: 'Perfiles', route: 'app.profile'}
+            {name: 'Perfiles', route: 'app.profile'},
+            {name: 'Grupos', route: 'app.group'}
         ];
 
     }

@@ -1,39 +1,39 @@
-rolesRoutes.$inject = ['$stateProvider'];
+groupsRoutes.$inject = ['$stateProvider'];
 
-function rolesRoutes($stateProvider) {
+function groupsRoutes($stateProvider) {
     'use strict';
 
     $stateProvider
-        .state('app.role', {
-            url: '/roles',
-            controller: 'RolesController',
+        .state('app.group', {
+            url: '/grupos',
+            controller: 'GroupsController',
             controllerAs: '$ctrl',
-            templateUrl: 'components/roles/roles.html',
+            templateUrl: 'components/groups/groups.html',
             data: {
                 requiresLogin: true
             }
         })
-        .state('app.role.create', {
+        .state('app.group.create', {
             url: '/create',
-            template: '<roles-form role-data="{}"></roles-form>'
+            template: '<groups-form group-data="{}"></groups-form>'
         })
-        .state('app.role.update', {
+        .state('app.group.update', {
             url: '/:id/actualizar',
-            controller: ['roleData', function (roleData) {
+            controller: ['groupData', function (groupData) {
                 let self = this;
-                self.roleData = roleData;
+                self.groupData = groupData;
             }],
             controllerAs: '$ctrl',
-            template: `<roles-form role-data="$ctrl.roleData"></roles-form>`,
+            template: `<groups-form group-data="$ctrl.groupData"></groups-form>`,
             data: {
                 requiresLogin: true
             },
             resolve: {
-                roleData: ['$q', '$stateParams', 'BaseService', ($q, $stateParams, BaseService) => {
+                groupData: ['$q', '$stateParams', 'BaseService', ($q, $stateParams, BaseService) => {
                     return $q((resolve, reject) => {
                         BaseService.request(
                             {
-                                endpoint: `roles/${$stateParams.id}?include=profiles`,
+                                endpoint: `groups/${$stateParams.id}?include=users`,
                                 method: 'GET'
                             }
                         ).then(data => {
@@ -45,4 +45,4 @@ function rolesRoutes($stateProvider) {
         });
 }
 
-export default rolesRoutes;
+export default groupsRoutes;
